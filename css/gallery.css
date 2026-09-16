@@ -1,0 +1,21 @@
+.gallery-band { background: var(--cream); }
+.brand-mark img { border-radius: 50%; height: 100%; object-fit: cover; width: 100%; }
+.brand-mark img[hidden] { display: none; }
+.gallery-intro { color: var(--muted); max-width: 280px; }
+.gallery-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+.gallery-item { background: var(--paper); }
+.gallery-item:nth-child(2) { margin-top: 55px; }
+.gallery-item:nth-child(3) { margin-top: 110px; }
+.gallery-item:nth-child(4) { margin-top: -55px; }
+.gallery-image { background: var(--paper) var(--gallery-image) center/cover; min-height: 245px; position: relative; }
+.gallery-image span { background: var(--lime); font-size: 10px; left: 14px; padding: 5px 8px; position: absolute; top: 14px; }
+.gallery-caption { padding: 15px 16px 19px; }
+.gallery-caption h3 { font: 600 21px var(--serif); }
+.gallery-caption p { color: var(--muted); font-size: 12px; margin-top: 4px; }
+@media (max-width: 800px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item:nth-child(n) { margin-top: 0; }
+  .gallery-item:first-child { grid-column: 1 / -1; }
+  .gallery-image { min-height: 190px; }
+  .gallery-item:first-child .gallery-image { min-height: 250px; }
+}

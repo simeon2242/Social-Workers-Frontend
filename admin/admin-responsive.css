@@ -1,0 +1,32 @@
+@media (max-width: 700px) {
+  .dashboard-header { gap: 10px; }
+  .dashboard-header .theme-toggle { margin: 0 0 0 auto; order: 3; }
+  .dashboard-header .profile { order: 2; }
+  .dashboard-header .mobile-menu { order: 1; }
+  .dashboard-header { align-items: flex-start; }
+  .dashboard-header h2 { font-size: 2rem; }
+  .profile span:not(.profile-avatar) { display: none; }
+  .dashboard-content { padding-left: 5vw; padding-right: 5vw; }
+  .resource-head { align-items: flex-start; flex-direction: column; gap: 18px; }
+  .resource-head .primary-button { align-self: stretch; justify-content: center; }
+  .modal-card { padding: 28px 20px; }
+}
+@media (max-width: 480px) {
+  h1 { font-size: 1.8rem !important; }
+  h2 { font-size: 1.45rem !important; }
+  h3 { font-size: 1.05rem !important; }
+  .login-card { padding: 25px 0; width: 88%; }
+  .login-art { min-height: 210px; }
+  .login-art p { font-size: 1.9rem; }
+  .dashboard-header { padding-left: 5vw; padding-right: 5vw; }
+  .welcome-line h1 { font-size: 1.9rem; }
+  .login-card h1 { font-size: 1.8rem; }
+  .resource-head h1 { font-size: 1.85rem; }
+  .modal-card h2 { font-size: 1.45rem; }
+  .stat-grid { gap: 10px; }
+  .stat-card { min-height: 130px; padding: 15px; }
+  .stat-card strong { font-size: 42px; }
+  .table-toolbar { padding: 14px; }
+  th, td { padding: 12px 14px; }
+  .modal-backdrop { padding: 10px; }
+}

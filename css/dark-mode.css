@@ -1,0 +1,74 @@
+html[data-theme="dark"] {
+  --ink: #ffffff;
+  --muted: #c3d0dc;
+  --paper: #000000;
+  --cream: #111b24;
+  --lime: #f4c542;
+  --coral: #8fc7f2;
+  --line: rgba(255,255,255,.2);
+  color-scheme: dark;
+}
+html[data-theme="dark"] body { background: #000; color: #fff; }
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .page-header,
+html[data-theme="dark"] .dashboard-header { background: #000; border-bottom: 1px solid rgba(255,255,255,.2); color: #fff; }
+html[data-theme="dark"] .main-nav a,
+html[data-theme="dark"] .button-quiet,
+html[data-theme="dark"] .hero-copy,
+html[data-theme="dark"] .hero-note,
+html[data-theme="dark"] .hero-scroll,
+html[data-theme="dark"] .page-header a { color: #fff; }
+html[data-theme="dark"] .brand-mark,
+html[data-theme="dark"] .page-brand-mark,
+html[data-theme="dark"] .button-primary,
+html[data-theme="dark"] .button-light,
+html[data-theme="dark"] .project-image span,
+html[data-theme="dark"] .journal-media span,
+html[data-theme="dark"] .gallery-image span { background: #f4c542; color: #000; }
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .events-band { background-color: #111b24; color: #fff; }
+html[data-theme="dark"] .hero-wash { background: linear-gradient(90deg, rgba(0,0,0,.98), rgba(17,27,36,.9)); }
+html[data-theme="dark"] .about,
+html[data-theme="dark"] .projects,
+html[data-theme="dark"] .journal,
+html[data-theme="dark"] .team-band { background: #000; color: #fff; }
+html[data-theme="dark"] .values,
+html[data-theme="dark"] .gallery-band,
+html[data-theme="dark"] .resource-card,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .login-card { background: #111b24; color: #fff; }
+html[data-theme="dark"] .mission-band,
+html[data-theme="dark"] .site-footer,
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .login-art { background: #000; color: #fff; }
+html[data-theme="dark"] .contact-band { background: #f4c542; color: #000; }
+html[data-theme="dark"] .contact-form input,
+html[data-theme="dark"] .contact-form textarea,
+html[data-theme="dark"] .login-card input,
+html[data-theme="dark"] .modal-card input,
+html[data-theme="dark"] .modal-card textarea,
+html[data-theme="dark"] .modal-card select { background: #000; border-color: rgba(255,255,255,.45); color: #fff; }
+html[data-theme="dark"] .modal-card { background: #111b24; color: #fff; }
+html[data-theme="dark"] .quick-links button,
+html[data-theme="dark"] .activity-icon { background: #000; color: #fff; }
+html[data-theme="dark"] .table-panel { background: #111b24; }
+html[data-theme="dark"] th,
+html[data-theme="dark"] td { border-color: rgba(255,255,255,.18); }
+html[data-theme="dark"] .main-nav { background: #000; }
+html[data-theme="dark"] .page-nav { background: #000; }
+html[data-theme="dark"] .page-nav a { border-color: rgba(255,255,255,.2); color: #fff; }
+html[data-theme="dark"] .resource-media,
+html[data-theme="dark"] .detail-media,
+html[data-theme="dark"] .team-photo { background-color: #111b24; }
+html[data-theme="dark"] .text-link,
+html[data-theme="dark"] .section-kicker,
+html[data-theme="dark"] .resource-meta,
+html[data-theme="dark"] .journal-meta time { color: #8fc7f2; }
+html[data-theme="dark"] .theme-toggle { background: #f4c542; color: #000; }
+
+.theme-toggle { align-items: center; background: #f4c542; border: 0; border-radius: 999px; color: #12456f; cursor: pointer; display: inline-flex; font: 600 11px/1 "Trebuchet MS", sans-serif; gap: 7px; padding: 8px 11px; }
+.site-header .theme-toggle { margin-left: auto; margin-right: 18px; }
+.page-header .theme-toggle { margin-left: auto; margin-right: 18px; }
+.dashboard-header .theme-toggle { margin-left: auto; margin-right: 18px; }
+.theme-toggle span:first-child { font-size: 15px; }
+@media (max-width: 640px) { .theme-toggle-label { display: none; } .theme-toggle { padding: 8px; } .site-header .theme-toggle, .page-header .theme-toggle, .dashboard-header .theme-toggle { margin-right: 8px; } }

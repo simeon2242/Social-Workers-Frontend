@@ -1,0 +1,32 @@
+:root {
+  --ink: #12456f;
+  --muted: #5e7182;
+  --paper: #ffffff;
+  --cream: #f3f8fc;
+  --lime: #f4c542;
+  --coral: #1769aa;
+  --line: rgba(18, 69, 111, .16);
+  --serif: "Trebuchet MS", sans-serif;
+  --sans: "Trebuchet MS", sans-serif;
+}
+body, button, input, textarea, select, h1, h2, h3, .login-art p, .page-brand { font-family: "Trebuchet MS", sans-serif; }
+body { background: #fff; color: #12456f; }
+.dashboard-header { position: sticky; top: 0; z-index: 7; }
+.sidebar, .login-art { background: #12456f; }
+.login-screen, .dashboard { background: #fff; }
+.brand-mark, .admin-brand span, .profile-avatar, .stat-card.lime, .stat-card.coral { background: #f4c542; color: #12456f; }
+.side-nav button span, .back-top, .resource-head .overline, .overline { color: #1769aa; }
+.side-nav button span { color: #f4c542; }
+.side-nav button.active, .side-nav button:hover { background: rgba(255,255,255,.12); }
+.primary-button { background: #12456f; color: #fff; }
+.primary-button:hover { background: #1769aa; }
+.stat-card.cream { background: #f3f8fc; }
+.stat-card.ink { background: #12456f; color: #fff; }
+.panel, .login-card { background: #fff; }
+.quick-links button, .activity-icon { background: #f3f8fc; }
+.status-pill.is-on { background: #fff2bd; color: #7e5f00; }
+.status-pill.is-off { background: #e5f1fa; color: #1769aa; }
+.modal-backdrop { background: rgba(18,69,111,.62); }
+.toast { background: #12456f; }
+.toast.error { background: #1769aa; }
+@media (max-width: 900px) { .sidebar { background: #12456f; } }

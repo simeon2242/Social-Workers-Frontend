@@ -1,0 +1,63 @@
+/* Shared responsive refinements for the public experience. */
+img, video { max-width: 100%; }
+button, a, input, textarea, select { max-width: 100%; }
+.mobile-nav-backdrop { display: none; }
+
+@media (max-width: 900px) {
+  .hero { padding-left: 8vw; padding-right: 8vw; }
+  .about-grid, .values, .contact-band { gap: 42px; }
+  .project-grid, .journal-grid { gap: 18px; }
+  .project-meta { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .team-grid { gap: 16px; }
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 2rem !important; line-height: 1.05; }
+  h2 { font-size: 1.6rem !important; line-height: 1.08; }
+  h3 { font-size: 1.15rem !important; line-height: 1.12; }
+  .site-header { display: flex; gap: 8px; padding: 16px 5vw; }
+  .site-header .brand { margin-right: auto; }
+  .site-header .theme-toggle { order: 2; }
+  .site-header .menu-toggle { order: 3; }
+  .mobile-nav-backdrop { background: rgba(18, 69, 111, .24); border: 0; display: block; inset: 0; opacity: 0; pointer-events: none; position: fixed; transition: opacity .25s ease, backdrop-filter .25s ease; z-index: 4; }
+  .menu-open .mobile-nav-backdrop { backdrop-filter: blur(7px); opacity: 1; pointer-events: auto; }
+  .menu-toggle { z-index: 7; }
+  .main-nav { background: #fff; box-shadow: -18px 0 40px rgba(18, 69, 111, .16); display: flex; flex-direction: column; gap: 0; justify-content: flex-start; padding: 105px 28px 35px; position: fixed; right: 0; top: 0; bottom: 0; left: auto; transform: translateX(105%); transition: transform .3s ease; width: min(82vw, 340px); z-index: 6; }
+  .main-nav.is-open { transform: translateX(0); }
+  .main-nav a { border-bottom: 1px solid rgba(18, 69, 111, .12); color: #12456f; display: block; font-size: 15px; opacity: 1; padding: 16px 0; width: 100%; }
+  .main-nav .nav-contact { border-bottom: 1px solid #f4c542; color: #1769aa !important; margin-top: 18px; }
+  .brand-name { max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hero { min-height: 640px; padding: 130px 7vw 70px; }
+  .hero h1 { font-size: clamp(2.1rem, 9vw, 3rem); }
+  .about-heading h2, .values h2, .section-heading-row h2, .contact-copy h2 { font-size: clamp(1.6rem, 7vw, 2.3rem); }
+  .about-heading h2 { line-height: 1.08; max-width: 20ch; }
+  .section-intro h2 { font-size: clamp(1.7rem, 7vw, 2.5rem); }
+  .hero-description { font-size: 16px; margin: 24px 0; }
+  .hero-actions { align-items: stretch; flex-direction: column; max-width: 230px; }
+  .hero-actions .button { width: 100%; }
+  .hero-note { bottom: 70px; font-size: 9px; right: 7vw; }
+  .hero-scroll { bottom: 22px; left: 7vw; }
+  .section-shell { padding-left: 7vw; padding-right: 7vw; }
+  .about-heading h2, .values h2, .section-heading-row h2, .contact-copy h2 { font-size: clamp(1.7rem, 7vw, 2.5rem); }
+  .lead { font-size: 22px; }
+  .event-row { grid-template-columns: 62px 1fr 18px; }
+  .event-row time, .event-row h3 { font-size: 18px; }
+  .contact-form { padding-top: 0; }
+  .footer-links { gap: 12px; }
+}
+
+@media (max-width: 420px) {
+  h1 { font-size: 1.8rem !important; }
+  h2 { font-size: 1.45rem !important; }
+  h3 { font-size: 1.05rem !important; }
+  .brand-name { font-size: 11px; max-width: 145px; }
+  .brand-mark { height: 34px; width: 34px; }
+  .hero { min-height: 600px; }
+  .hero h1 { font-size: clamp(1.95rem, 8vw, 2.6rem); }
+  .about-heading h2, .values h2, .section-heading-row h2, .contact-copy h2, .section-intro h2 { font-size: clamp(1.45rem, 6.5vw, 2rem); }
+  .about-heading h2 { line-height: 1.1; }
+  .hero-note { display: none; }
+  .hero-actions { max-width: none; }
+  .event-row { gap: 9px; grid-template-columns: 56px 1fr 14px; }
+  .event-row p { font-size: 12px; }
+}

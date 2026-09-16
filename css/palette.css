@@ -1,0 +1,87 @@
+:root {
+  --ink: #12456f;
+  --muted: #5e7182;
+  --paper: #ffffff;
+  --cream: #f3f8fc;
+  --lime: #f4c542;
+  --coral: #1769aa;
+  --line: rgba(18, 69, 111, .16);
+  --serif: "Trebuchet MS", sans-serif;
+  --sans: "Trebuchet MS", sans-serif;
+}
+
+body, button, input, textarea, select { font-family: "Trebuchet MS", sans-serif; }
+h1, h2, h3, .brand-intro p { font-family: "Trebuchet MS", sans-serif; }
+.brand-intro-logo { font-family: "Trebuchet MS", sans-serif; }
+
+body { background: #fff; color: #12456f; }
+.site-header { position: fixed; width: 100%; }
+.site-header { background: rgba(18, 69, 111, .97); color: #fff; }
+.site-header { align-items: center; display: grid; gap: 24px; grid-template-columns: auto minmax(0, 1fr) auto; padding-left: 5vw; padding-right: 5vw; }
+.site-header .brand { min-width: 0; }
+.site-header .main-nav { justify-self: center; }
+.site-header .theme-toggle { grid-column: 3; grid-row: 1; margin: 0; }
+.site-header .menu-toggle { grid-column: 3; grid-row: 1; }
+.main-nav a, .button-quiet, .hero-copy, .hero-note, .hero-scroll { color: #fff; }
+.nav-contact { border-color: #f4c542; color: #f4c542 !important; }
+.menu-toggle span:not(.sr-only) { background: #fff; }
+.brand-mark, .button-primary, .project-image span, .journal-media span, .gallery-image span, .team-avatar-fallback { background: #f4c542; color: #12456f; }
+
+.brand-intro { background: #12456f; color: #fff; }
+.brand-intro-logo { background: #f4c542; border-color: #fff; color: #12456f; }
+.brand-intro > span { background: #f4c542; }
+.hero { background-color: #1769aa; }
+.hero-wash { background: linear-gradient(90deg, rgba(18, 69, 111, .98), rgba(23, 105, 170, .82) 52%, rgba(23, 105, 170, .12)); }
+.hero-description { color: #e9f4fc; }
+.eyebrow, .hero-note-number { color: #f4c542; }
+.eyebrow-line, .hero-note-rule, .section-kicker span { background: #f4c542; }
+.hero-scroll span { border-color: #f4c542; }
+.button-primary { color: #12456f; }
+
+.about, .projects, .journal { background: #fff; }
+.section-kicker, em, .text-link, .journal-meta time { color: #1769aa; }
+.about-conclusion { border-color: #1769aa; }
+.mission-band, .site-footer { background: #12456f; }
+.mission-band .section-kicker { color: #f4c542; }
+.mission-band .section-intro h2, .principle-card h3 { color: #fff; }
+.card-index { color: #f4c542; }
+.principle-type { color: #f4c542; }
+.principle-card p { color: #d9eaf6; }
+.values, .gallery-band { background: #f3f8fc; }
+.value-icon { border-color: #1769aa; color: #1769aa; }
+.events-band { background: #1769aa; color: #fff; }
+.events-band .section-kicker, .events-band .text-link { color: #fff; }
+.events-band .section-kicker span { background: #f4c542; }
+.contact-band { background: #f4c542; color: #12456f; }
+.button-light { background: #12456f; color: #fff; }
+.contact-form input, .contact-form textarea { border-color: rgba(18, 69, 111, .4); }
+.back-top { color: #f4c542; }
+.footer-bottom { color: #d9eaf6; }
+
+/* Compact layout: keep the sections readable without large empty gaps. */
+.section-shell { padding-bottom: 82px; padding-top: 82px; }
+.section-kicker { margin-bottom: 28px; }
+.section-heading-row { margin-bottom: 38px; }
+.section-intro { margin-bottom: 38px; }
+.about-conclusion { margin-top: 26px; }
+.project-card:nth-child(2), .project-card:nth-child(3) { margin-top: 24px; }
+.gallery-item:nth-child(2), .gallery-item:nth-child(3) { margin-top: 24px; }
+.gallery-item:nth-child(4) { margin-top: 0; }
+.values { gap: 6vw; }
+.contact-details { margin-top: 24px; }
+.site-footer { padding-bottom: 24px; padding-top: 42px; }
+
+@media (max-width: 800px) {
+  .section-shell { padding-bottom: 58px; padding-top: 58px; }
+  .section-kicker { margin-bottom: 22px; }
+  .section-heading-row { margin-bottom: 28px; }
+  .section-intro { margin-bottom: 24px; }
+  .hero { min-height: 680px; }
+}
+
+@media (max-width: 800px) {
+  .site-header { background: rgba(18, 69, 111, .98); }
+  .main-nav { background: #fff; color: #12456f; }
+  .main-nav a { color: #12456f; }
+  .hero-wash { background: rgba(18, 69, 111, .86); }
+}

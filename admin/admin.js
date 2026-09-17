@@ -16,19 +16,19 @@ const labelFor = (name, value) => valueLabels[name]?.[value] || value;
 
 const resources = {
   landing: { label: "Landing page", singleton: true, endpoint: "/landing/", title: "title", columns: [["title", "Titre"], ["primary_button_label", "Bouton principal"], ["is_active", "Actif"]], fields: [
-    ["title", "Titre principal", "text", true], ["description", "Petite description", "textarea", true], ["image", "Photo du landing", "file"], ["primary_button_label", "Texte du bouton principal", "text", true], ["primary_button_url", "Lien du bouton principal", "text", true], ["secondary_button_label", "Texte du second bouton", "text"], ["secondary_button_url", "Lien du second bouton", "text"], ["is_active", "Actif", "checkbox"],
+    ["title", "Titre principal", "text"], ["description", "Petite description", "textarea"], ["image", "Photo du landing", "file"], ["primary_button_label", "Texte du bouton principal", "text"], ["primary_button_url", "Lien du bouton principal", "text"], ["secondary_button_label", "Texte du second bouton", "text"], ["secondary_button_url", "Lien du second bouton", "text"], ["is_active", "Actif", "checkbox"],
   ] },
   about: { label: "Qui sommes-nous ?", singleton: true, endpoint: "/about/", title: "title", columns: [["title", "Titre"], ["conclusion", "Phrase de conclusion"], ["is_active", "Actif"]], fields: [
-    ["title", "Titre", "text", true], ["description", "Description", "textarea", true], ["image", "Image", "file"], ["conclusion", "Phrase de conclusion", "textarea"], ["is_active", "Actif", "checkbox"],
+    ["title", "Titre", "text"], ["description", "Description", "textarea"], ["image", "Image", "file"], ["conclusion", "Phrase de conclusion", "textarea"], ["is_active", "Actif", "checkbox"],
   ] },
   "vision-missions": { label: "Vision & mission", endpoint: "/vision-missions/", title: "title", columns: [["kind", "Type"], ["title", "Titre"], ["display_order", "Ordre"], ["is_active", "Actif"]], fields: [
-    ["kind", "Type", "select", true, ["VISION", "MISSION"]], ["title", "Titre", "text", true], ["description", "Explication", "textarea", true], ["icon", "Icône", "text"], ["display_order", "Ordre d’affichage", "number"], ["is_active", "Actif", "checkbox"],
+    ["kind", "Type", "select", true, ["VISION", "MISSION"]], ["title", "Titre", "text"], ["description", "Explication", "textarea"], ["icon", "Icône", "text"], ["display_order", "Ordre d’affichage", "number"], ["is_active", "Actif", "checkbox"],
   ] },
   "core-values": { label: "Valeurs fondamentales", endpoint: "/core-values/", title: "title", columns: [["title", "Titre"], ["icon", "Icône"], ["display_order", "Ordre"], ["is_active", "Actif"]], fields: [
-    ["icon", "Icône", "text"], ["title", "Titre", "text", true], ["description", "Explication", "textarea", true], ["display_order", "Ordre d’affichage", "number"], ["is_active", "Actif", "checkbox"],
+    ["icon", "Icône", "text"], ["title", "Titre", "text"], ["description", "Explication", "textarea"], ["display_order", "Ordre d’affichage", "number"], ["is_active", "Actif", "checkbox"],
   ] },
   "site-settings": { label: "Configuration du site", singleton: true, endpoint: "/site-settings/", title: "organization_name", columns: [["organization_name", "Organisation"], ["email", "Email"], ["phone", "Téléphone"], ["updated_at", "Modifié le"]], fields: [
-    ["organization_name", "Nom de l’organisation", "text", true], ["description", "Description", "textarea"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["address", "Adresse", "text"], ["whatsapp_url", "Lien WhatsApp", "url"], ["facebook_url", "Lien Facebook", "url"], ["instagram_url", "Lien Instagram", "url"], ["linkedin_url", "Lien LinkedIn", "url"],
+    ["organization_name", "Nom de l’organisation", "text"], ["description", "Description", "textarea"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["address", "Adresse", "text"], ["whatsapp_url", "Lien WhatsApp", "url"], ["facebook_url", "Lien Facebook", "url"], ["instagram_url", "Lien Instagram", "url"], ["linkedin_url", "Lien LinkedIn", "url"],
   ] },
   "contact-information": { label: "Informations de contact", singleton: true, endpoint: "/contact-information/", title: "email", columns: [["email", "Email"], ["phone", "Téléphone"], ["address", "Adresse"]], fields: [
     ["address", "Adresse", "text"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["whatsapp_url", "Lien WhatsApp", "url"], ["facebook_url", "Lien Facebook", "url"], ["instagram_url", "Lien Instagram", "url"], ["linkedin_url", "Lien LinkedIn", "url"],
@@ -37,19 +37,19 @@ const resources = {
     ["description", "Description", "textarea"], ["copyright_text", "Copyright", "text"], ["useful_links", "Liens utiles (JSON)", "json"],
   ] },
   projects: { label: "Projets", endpoint: "/projects/", title: "title", columns: [["title", "Titre"], ["status", "Statut"], ["location", "Lieu"], ["is_published", "Publié"]], fields: [
-    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["description", "Description", "textarea", true], ["photo", "Photo", "file", true], ["location", "Localisation", "text"], ["status", "Statut", "select", false, ["PLANNED", "IN_PROGRESS", "COMPLETED", "SUSPENDED"]], ["start_date", "Date de début", "date"], ["end_date", "Date de fin", "date"], ["display_order", "Ordre d’affichage", "number"], ["is_featured", "Mis en avant", "checkbox"], ["is_published", "Publié", "checkbox"],
+    ["title", "Titre", "text"], ["slug", "Slug", "text"], ["description", "Description", "textarea"], ["photo", "Photo", "file"], ["location", "Localisation", "text"], ["status", "Statut", "select", false, ["PLANNED", "IN_PROGRESS", "COMPLETED", "SUSPENDED"]], ["start_date", "Date de début", "date"], ["end_date", "Date de fin", "date"], ["display_order", "Ordre d’affichage", "number"], ["is_featured", "Mis en avant", "checkbox"], ["is_published", "Publié", "checkbox"],
   ] },
   events: { label: "Événements", endpoint: "/events/", title: "title", columns: [["title", "Titre"], ["event_date", "Date"], ["location", "Lieu"], ["is_published", "Publié"]], fields: [
-    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["icon", "Icône", "text"], ["event_date", "Date", "datetime-local", true], ["description", "Description", "textarea", true], ["image", "Image", "file"], ["location", "Lieu", "text"], ["display_order", "Ordre d’affichage", "number"], ["is_published", "Publié", "checkbox"],
+    ["title", "Titre", "text"], ["slug", "Slug", "text"], ["icon", "Icône", "text"], ["event_date", "Date", "datetime-local"], ["description", "Description", "textarea"], ["image", "Image", "file"], ["location", "Lieu", "text"], ["display_order", "Ordre d’affichage", "number"], ["is_published", "Publié", "checkbox"],
   ] },
   team: { label: "Équipe", endpoint: "/team/", title: "full_name", columns: [["full_name", "Nom"], ["position", "Fonction"], ["email", "Email"], ["is_active", "Actif"]], fields: [
-    ["full_name", "Nom complet", "text", true], ["position", "Fonction", "text", true], ["description", "Description", "textarea"], ["photo", "Photo", "file"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["social_links", "Réseaux sociaux (JSON)", "json"], ["is_active", "Actif", "checkbox"],
+    ["full_name", "Nom complet", "text"], ["position", "Fonction", "text"], ["description", "Description", "textarea"], ["photo", "Photo", "file"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["social_links", "Réseaux sociaux (JSON)", "json"], ["is_active", "Actif", "checkbox"],
   ] },
   blog: { label: "Actualités", endpoint: "/blog/", title: "title", columns: [["title", "Titre"], ["media_type", "Média"], ["is_published", "Publié"], ["published_at", "Publication"]], fields: [
-    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["excerpt", "Résumé", "textarea", true], ["content", "Contenu", "textarea", true], ["media_type", "Type de média", "select", false, ["IMAGE", "VIDEO"]], ["image", "Image", "file"], ["video_url", "URL vidéo", "url"], ["published_at", "Date de publication", "datetime-local"], ["is_published", "Publié", "checkbox"],
+    ["title", "Titre", "text"], ["slug", "Slug", "text"], ["excerpt", "Résumé", "textarea"], ["content", "Contenu", "textarea"], ["media_type", "Type de média", "select", false, ["IMAGE", "VIDEO"]], ["image", "Image", "file"], ["video_url", "URL vidéo", "url"], ["published_at", "Date de publication", "datetime-local"], ["is_published", "Publié", "checkbox"],
   ] },
   gallery: { label: "Galerie", endpoint: "/gallery/", title: "title", columns: [["title", "Titre"], ["captured_at", "Date"], ["is_active", "Actif"]], fields: [
-    ["title", "Titre", "text", true], ["description", "Description", "textarea"], ["photo", "Photo", "file", true], ["event", "Événement lié", "event-select"], ["captured_at", "Date", "date"], ["is_active", "Actif", "checkbox"],
+    ["title", "Titre", "text"], ["description", "Description", "textarea"], ["photo", "Photo", "file"], ["event", "Événement lié", "event-select"], ["captured_at", "Date", "date"], ["is_active", "Actif", "checkbox"],
   ] },
   messages: { label: "Messages", endpoint: "/contact/messages/", title: "full_name", columns: [["full_name", "Nom"], ["email", "Email"], ["message", "Message"], ["is_read", "Lu"], ["created_at", "Reçu le"]], fields: [] },
 };
@@ -174,6 +174,9 @@ async function saveForm(form) {
     }
   });
   if (payload.event === "") delete payload.event;
+  Object.entries(payload).forEach(([name, value]) => {
+    if (value === "" || value === undefined || value === null) delete payload[name];
+  });
   const hasFile = resources[view].fields.some(([, , type]) => type === "file");
   let body = JSON.stringify(payload);
   if (hasFile) {

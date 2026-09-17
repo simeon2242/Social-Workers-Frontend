@@ -28,7 +28,7 @@ const resources = {
     ["icon", "Icône", "text"], ["title", "Titre", "text", true], ["description", "Explication", "textarea", true], ["display_order", "Ordre d’affichage", "number"], ["is_active", "Actif", "checkbox"],
   ] },
   "site-settings": { label: "Configuration du site", singleton: true, endpoint: "/site-settings/", title: "organization_name", columns: [["organization_name", "Organisation"], ["email", "Email"], ["phone", "Téléphone"], ["updated_at", "Modifié le"]], fields: [
-    ["organization_name", "Nom de l’organisation", "text", true], ["logo", "Logo", "file"], ["description", "Description", "textarea"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["address", "Adresse", "text"], ["whatsapp_url", "Lien WhatsApp", "url"], ["facebook_url", "Lien Facebook", "url"], ["instagram_url", "Lien Instagram", "url"], ["linkedin_url", "Lien LinkedIn", "url"],
+    ["organization_name", "Nom de l’organisation", "text", true], ["description", "Description", "textarea"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["address", "Adresse", "text"], ["whatsapp_url", "Lien WhatsApp", "url"], ["facebook_url", "Lien Facebook", "url"], ["instagram_url", "Lien Instagram", "url"], ["linkedin_url", "Lien LinkedIn", "url"],
   ] },
   "contact-information": { label: "Informations de contact", singleton: true, endpoint: "/contact-information/", title: "email", columns: [["email", "Email"], ["phone", "Téléphone"], ["address", "Adresse"]], fields: [
     ["address", "Adresse", "text"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["whatsapp_url", "Lien WhatsApp", "url"], ["facebook_url", "Lien Facebook", "url"], ["instagram_url", "Lien Instagram", "url"], ["linkedin_url", "Lien LinkedIn", "url"],

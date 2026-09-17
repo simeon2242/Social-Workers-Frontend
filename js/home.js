@@ -79,20 +79,6 @@ function renderSiteSettings(data) {
   if (!item) return;
   setText("[data-site-name]", item.organization_name);
   setText("[data-intro-name]", item.organization_name);
-  const introLogo = $("[data-intro-logo]");
-  const introFallback = $("[data-intro-logo-fallback]");
-  if (introLogo && item.logo) {
-    introLogo.src = item.logo;
-    introLogo.hidden = false;
-    introFallback.hidden = true;
-  }
-  const logo = $("[data-site-logo]");
-  const logoFallback = $("[data-site-logo-fallback]");
-  if (logo && item.logo) {
-    logo.src = item.logo;
-    logo.hidden = false;
-    logoFallback.hidden = true;
-  }
   setText("[data-footer-description]", item.description);
   $("[data-footer-email]").textContent = item.email || "";
   $("[data-footer-email]").href = item.email ? `mailto:${item.email}` : "#";

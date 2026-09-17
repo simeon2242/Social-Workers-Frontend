@@ -6,11 +6,19 @@ const escapeHtml = (value = "") => String(value).replace(/[&<>'"]/g, (char) => (
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;",
 }[char]));
 
+const valueLabels = {
+  status: { PLANNED: "Planifié", IN_PROGRESS: "En cours", COMPLETED: "Terminé", SUSPENDED: "Suspendu" },
+  media_type: { IMAGE: "Image", VIDEO: "Vidéo" },
+  kind: { VISION: "Vision", MISSION: "Mission" },
+};
+const jsonDefaults = { useful_links: [], social_links: {} }; 
+const labelFor = (name, value) => valueLabels[name]?.[value] || value;
+
 const resources = {
-  landing: { label: "Landing page", endpoint: "/landing/", title: "title", columns: [["title", "Titre"], ["primary_button_label", "Bouton principal"], ["is_active", "Actif"]], fields: [
+  landing: { label: "Landing page", singleton: true, endpoint: "/landing/", title: "title", columns: [["title", "Titre"], ["primary_button_label", "Bouton principal"], ["is_active", "Actif"]], fields: [
     ["title", "Titre principal", "text", true], ["description", "Petite description", "textarea", true], ["image", "Photo du landing", "file"], ["primary_button_label", "Texte du bouton principal", "text", true], ["primary_button_url", "Lien du bouton principal", "text", true], ["secondary_button_label", "Texte du second bouton", "text"], ["secondary_button_url", "Lien du second bouton", "text"], ["is_active", "Actif", "checkbox"],
   ] },
-  about: { label: "Qui sommes-nous ?", endpoint: "/about/", title: "title", columns: [["title", "Titre"], ["conclusion", "Phrase de conclusion"], ["is_active", "Actif"]], fields: [
+  about: { label: "Qui sommes-nous ?", singleton: true, endpoint: "/about/", title: "title", columns: [["title", "Titre"], ["conclusion", "Phrase de conclusion"], ["is_active", "Actif"]], fields: [
     ["title", "Titre", "text", true], ["description", "Description", "textarea", true], ["image", "Image", "file"], ["conclusion", "Phrase de conclusion", "textarea"], ["is_active", "Actif", "checkbox"],
   ] },
   "vision-missions": { label: "Vision & mission", endpoint: "/vision-missions/", title: "title", columns: [["kind", "Type"], ["title", "Titre"], ["display_order", "Ordre"], ["is_active", "Actif"]], fields: [
@@ -19,29 +27,29 @@ const resources = {
   "core-values": { label: "Valeurs fondamentales", endpoint: "/core-values/", title: "title", columns: [["title", "Titre"], ["icon", "Icône"], ["display_order", "Ordre"], ["is_active", "Actif"]], fields: [
     ["icon", "Icône", "text"], ["title", "Titre", "text", true], ["description", "Explication", "textarea", true], ["display_order", "Ordre d’affichage", "number"], ["is_active", "Actif", "checkbox"],
   ] },
-  "site-settings": { label: "Configuration du site", endpoint: "/site-settings/", title: "organization_name", columns: [["organization_name", "Organisation"], ["email", "Email"], ["phone", "Téléphone"], ["updated_at", "Modifié le"]], fields: [
+  "site-settings": { label: "Configuration du site", singleton: true, endpoint: "/site-settings/", title: "organization_name", columns: [["organization_name", "Organisation"], ["email", "Email"], ["phone", "Téléphone"], ["updated_at", "Modifié le"]], fields: [
     ["organization_name", "Nom de l’organisation", "text", true], ["logo", "Logo", "file"], ["description", "Description", "textarea"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["address", "Adresse", "text"], ["whatsapp_url", "Lien WhatsApp", "url"], ["facebook_url", "Lien Facebook", "url"], ["instagram_url", "Lien Instagram", "url"], ["linkedin_url", "Lien LinkedIn", "url"],
   ] },
-  "contact-information": { label: "Informations de contact", endpoint: "/contact-information/", title: "email", columns: [["email", "Email"], ["phone", "Téléphone"], ["address", "Adresse"]], fields: [
+  "contact-information": { label: "Informations de contact", singleton: true, endpoint: "/contact-information/", title: "email", columns: [["email", "Email"], ["phone", "Téléphone"], ["address", "Adresse"]], fields: [
     ["address", "Adresse", "text"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["whatsapp_url", "Lien WhatsApp", "url"], ["facebook_url", "Lien Facebook", "url"], ["instagram_url", "Lien Instagram", "url"], ["linkedin_url", "Lien LinkedIn", "url"],
   ] },
-  footer: { label: "Footer", endpoint: "/footer/", title: "copyright_text", columns: [["copyright_text", "Copyright"], ["description", "Description"]], fields: [
-    ["description", "Description", "textarea"], ["copyright_text", "Copyright", "text"], ["useful_links", "Liens utiles (JSON)", "textarea"],
+  footer: { label: "Footer", singleton: true, endpoint: "/footer/", title: "copyright_text", columns: [["copyright_text", "Copyright"], ["description", "Description"]], fields: [
+    ["description", "Description", "textarea"], ["copyright_text", "Copyright", "text"], ["useful_links", "Liens utiles (JSON)", "json"],
   ] },
   projects: { label: "Projets", endpoint: "/projects/", title: "title", columns: [["title", "Titre"], ["status", "Statut"], ["location", "Lieu"], ["is_published", "Publié"]], fields: [
-    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["description", "Description", "textarea", true], ["photo", "Photo", "file", true], ["location", "Localisation", "text"], ["status", "Statut", "select", false, ["PLANNED", "IN_PROGRESS", "COMPLETED", "SUSPENDED"]], ["is_featured", "Mis en avant", "checkbox"], ["is_published", "Publié", "checkbox"],
+    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["description", "Description", "textarea", true], ["photo", "Photo", "file", true], ["location", "Localisation", "text"], ["status", "Statut", "select", false, ["PLANNED", "IN_PROGRESS", "COMPLETED", "SUSPENDED"]], ["start_date", "Date de début", "date"], ["end_date", "Date de fin", "date"], ["display_order", "Ordre d’affichage", "number"], ["is_featured", "Mis en avant", "checkbox"], ["is_published", "Publié", "checkbox"],
   ] },
   events: { label: "Événements", endpoint: "/events/", title: "title", columns: [["title", "Titre"], ["event_date", "Date"], ["location", "Lieu"], ["is_published", "Publié"]], fields: [
-    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["icon", "Icône", "text"], ["event_date", "Date", "datetime-local", true], ["description", "Description", "textarea", true], ["location", "Lieu", "text"], ["is_published", "Publié", "checkbox"],
+    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["icon", "Icône", "text"], ["event_date", "Date", "datetime-local", true], ["description", "Description", "textarea", true], ["image", "Image", "file"], ["location", "Lieu", "text"], ["display_order", "Ordre d’affichage", "number"], ["is_published", "Publié", "checkbox"],
   ] },
   team: { label: "Équipe", endpoint: "/team/", title: "full_name", columns: [["full_name", "Nom"], ["position", "Fonction"], ["email", "Email"], ["is_active", "Actif"]], fields: [
-    ["full_name", "Nom complet", "text", true], ["position", "Fonction", "text", true], ["description", "Description", "textarea"], ["photo", "Photo", "file"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["is_active", "Actif", "checkbox"],
+    ["full_name", "Nom complet", "text", true], ["position", "Fonction", "text", true], ["description", "Description", "textarea"], ["photo", "Photo", "file"], ["email", "Email", "email"], ["phone", "Téléphone", "text"], ["social_links", "Réseaux sociaux (JSON)", "json"], ["is_active", "Actif", "checkbox"],
   ] },
   blog: { label: "Actualités", endpoint: "/blog/", title: "title", columns: [["title", "Titre"], ["media_type", "Média"], ["is_published", "Publié"], ["published_at", "Publication"]], fields: [
-    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["excerpt", "Résumé", "textarea", true], ["content", "Contenu", "textarea", true], ["media_type", "Type de média", "select", false, ["IMAGE", "VIDEO"]], ["image", "Image", "file"], ["video_url", "URL vidéo", "url"], ["is_published", "Publié", "checkbox"],
+    ["title", "Titre", "text", true], ["slug", "Slug", "text", true], ["excerpt", "Résumé", "textarea", true], ["content", "Contenu", "textarea", true], ["media_type", "Type de média", "select", false, ["IMAGE", "VIDEO"]], ["image", "Image", "file"], ["video_url", "URL vidéo", "url"], ["published_at", "Date de publication", "datetime-local"], ["is_published", "Publié", "checkbox"],
   ] },
   gallery: { label: "Galerie", endpoint: "/gallery/", title: "title", columns: [["title", "Titre"], ["captured_at", "Date"], ["is_active", "Actif"]], fields: [
-    ["title", "Titre", "text", true], ["description", "Description", "textarea"], ["photo", "Photo", "file", true], ["captured_at", "Date", "date"], ["is_active", "Actif", "checkbox"],
+    ["title", "Titre", "text", true], ["description", "Description", "textarea"], ["photo", "Photo", "file", true], ["event", "Événement lié", "event-select"], ["captured_at", "Date", "date"], ["is_active", "Actif", "checkbox"],
   ] },
   messages: { label: "Messages", endpoint: "/contact/messages/", title: "full_name", columns: [["full_name", "Nom"], ["email", "Email"], ["message", "Message"], ["is_read", "Lu"], ["created_at", "Reçu le"]], fields: [] },
 };
@@ -66,6 +74,7 @@ async function request(path, options = {}) {
 function displayValue(value, key) {
   if (typeof value === "boolean") return `<span class="status-pill ${value ? "is-on" : "is-off"}">${value ? "Oui" : "Non"}</span>`;
   if (!value) return "<span class=muted>—</span>";
+  if (valueLabels[key]?.[value]) return escapeHtml(valueLabels[key][value]);
   if (key.includes("date")) return new Date(value).toLocaleDateString("fr-FR");
   return escapeHtml(String(value).slice(0, 80));
 }
@@ -81,8 +90,14 @@ function formatDateTimeLocal(value) {
 function renderResource(view, data) {
   const config = resources[view];
   const panel = $(`[data-view-panel="${view}"]`);
-  const rows = data.map((item) => `<tr><td><strong>${escapeHtml(item[config.title] || "Sans titre")}</strong></td>${config.columns.slice(1).map(([key]) => `<td>${displayValue(item[key], key)}</td>`).join("")}<td class="row-actions"><button data-edit="${item.id}" data-resource="${view}" aria-label="Modifier">✎</button><button data-delete="${item.id}" data-resource="${view}" aria-label="Supprimer">×</button></td></tr>`).join("");
-  panel.innerHTML = `<div class="resource-head"><div><p class="overline">Gestion de contenu</p><h1>${config.label}</h1><p class="muted">${data.length} élément${data.length > 1 ? "s" : ""} enregistré${data.length > 1 ? "s" : ""}</p></div>${view !== "messages" ? `<button class="primary-button" data-new="${view}">+ Ajouter</button>` : ""}</div><div class="panel table-panel"><div class="table-toolbar"><input type="search" placeholder="Rechercher..." data-filter="${view}"><span class="muted">Mise à jour en temps réel</span></div><div class="table-scroll"><table><thead><tr>${config.columns.map(([, label]) => `<th>${label}</th>`).join("")}<th></th></tr></thead><tbody>${rows || `<tr><td colspan="${config.columns.length + 1}" class="empty-state">Aucun contenu pour le moment.</td></tr>`}</tbody></table></div></div>`;
+  const rows = data.map((item) => {
+    const actions = view === "messages"
+      ? `<button data-toggle-read="${item.id}" data-read-current="${item.is_read ? "1" : "0"}" data-resource="${view}" aria-label="${item.is_read ? "Marquer comme non lu" : "Marquer comme lu"}" title="${item.is_read ? "Marquer non lu" : "Marquer lu"}">✓</button><button data-delete="${item.id}" data-resource="${view}" aria-label="Supprimer">×</button>`
+      : `<button data-edit="${item.id}" data-resource="${view}" aria-label="Modifier">✎</button><button data-delete="${item.id}" data-resource="${view}" aria-label="Supprimer">×</button>`;
+    return `<tr><td><strong>${escapeHtml(item[config.title] || "Sans titre")}</strong></td>${config.columns.slice(1).map(([key]) => `<td>${displayValue(item[key], key)}</td>`).join("")}<td class="row-actions">${actions}</td></tr>`;
+  }).join("");
+  const canCreate = view !== "messages" && !(config.singleton && data.length >= 1);
+  panel.innerHTML = `<div class="resource-head"><div><p class="overline">Gestion de contenu</p><h1>${config.label}</h1><p class="muted">${data.length} élément${data.length > 1 ? "s" : ""} enregistré${data.length > 1 ? "s" : ""}</p></div>${canCreate ? `<button class="primary-button" data-new="${view}">+ Ajouter</button>` : ""}</div><div class="panel table-panel"><div class="table-toolbar"><input type="search" placeholder="Rechercher..." data-filter="${view}"><span class="muted">Mise à jour en temps réel</span></div><div class="table-scroll"><table><thead><tr>${config.columns.map(([, label]) => `<th>${label}</th>`).join("")}<th></th></tr></thead><tbody>${rows || `<tr><td colspan="${config.columns.length + 1}" class="empty-state">Aucun contenu pour le moment.</td></tr>`}</tbody></table></div></div>`;
 }
 
 async function loadResource(view) {
@@ -92,9 +107,14 @@ async function loadResource(view) {
 
 function fieldMarkup(field, item) {
   const [name, label, type, required, options = []] = field;
+  if (type === "json") {
+    const raw = typeof item[name] === "string" ? item[name] : JSON.stringify(item[name] ?? jsonDefaults[name] ?? null, null, 2);
+    return `<label class="wide">${label}<textarea name="${name}" rows="4">${escapeHtml(raw)}</textarea></label>`;
+  }
+  if (type === "event-select") return `<label>${label}<select name="${name}" data-event-select><option value="">Aucun</option></select></label>`;
   const value = name === "useful_links" && typeof item[name] !== "string" ? JSON.stringify(item[name] || [], null, 2) : item[name] || "";
   if (type === "textarea") return `<label class="wide">${label}<textarea name="${name}" rows="4" ${required ? "required" : ""}>${escapeHtml(value)}</textarea></label>`;
-  if (type === "select") return `<label>${label}<select name="${name}">${options.map((option) => `<option value="${option}" ${item[name] === option ? "selected" : ""}>${option}</option>`).join("")}</select></label>`;
+  if (type === "select") return `<label>${label}<select name="${name}">${options.map((option) => `<option value="${option}" ${item[name] === option ? "selected" : ""}>${escapeHtml(labelFor(name, option))}</option>`).join("")}</select></label>`;
   if (type === "checkbox") return `<label class="check-label"><input name="${name}" type="checkbox" ${item[name] ? "checked" : ""}>${label}</label>`;
   if (type === "file") return `<label>${label}<input name="${name}" type="file" accept="image/jpeg,image/png,image/webp" ${required && !item[name] ? "required" : ""}></label>`;
   if (type === "datetime-local") return `<label>${label}<input name="${name}" type="datetime-local" step="900" value="${formatDateTimeLocal(item[name])}" ${required ? "required" : ""}><small class="field-help">Sélectionnez la date, puis l’heure de début.</small></label>`;
@@ -107,9 +127,23 @@ function formMarkup(view, item = {}) {
   return `<div class="modal-backdrop" data-modal><form class="modal-card" data-resource-form data-resource="${view}" data-id="${itemId}"><button type="button" class="modal-close" data-close-modal>×</button><p class="overline">${item.id ? "Modifier" : "Nouveau"} contenu</p><h2>${item.id ? "Modifier" : "Créer"} ${config.label.toLowerCase().replace(/s$/, "")}</h2><div class="form-grid">${config.fields.map((field) => fieldMarkup(field, item)).join("")}</div><p class="form-error" data-modal-error></p><button class="primary-button" type="submit">Enregistrer <span>↗</span></button></form></div>`;
 }
 
+async function hydrateDynamicFields(form, item) {
+  const eventSelect = form.querySelector("[data-event-select]");
+  if (!eventSelect) return;
+  try {
+    const events = await request("/events/");
+    const list = Array.isArray(events) ? events : events.results || [];
+    eventSelect.insertAdjacentHTML("beforeend", list.map((event) => `<option value="${event.id}">${escapeHtml(event.title)}</option>`).join(""));
+    eventSelect.value = item.event || "";
+  } catch {
+    eventSelect.value = "";
+  }
+}
+
 async function openEditor(view, id = null) {
   const item = id ? await request(`${resources[view].endpoint}${id}/`) : {};
   document.body.insertAdjacentHTML("beforeend", formMarkup(view, item));
+  await hydrateDynamicFields($("[data-resource-form]"), item);
 }
 
 async function saveForm(form) {
@@ -120,19 +154,26 @@ async function saveForm(form) {
   resources[view].fields.forEach(([name, , type]) => {
     payload[name] = type === "checkbox" ? formData.has(name) : formData.get(name) || "";
   });
-  if (view === "events" && payload.event_date) {
-    payload.event_date = new Date(payload.event_date).toISOString();
-  }
-  if (view === "footer" && !payload.useful_links) {
-    payload.useful_links = [];
-  }
-  if (view === "footer" && payload.useful_links) {
-    try {
-      payload.useful_links = JSON.parse(payload.useful_links);
-    } catch {
-      throw new Error("Les liens utiles doivent être un JSON valide.");
+  resources[view].fields.forEach(([name, , type]) => {
+    if (type === "datetime-local" && payload[name]) {
+      const date = new Date(payload[name]);
+      if (!Number.isNaN(date.getTime())) payload[name] = date.toISOString();
     }
-  }
+  });
+  resources[view].fields.forEach(([name, , type]) => {
+    if (type !== "json") return;
+    const raw = payload[name];
+    if (!raw) {
+      payload[name] = jsonDefaults[name];
+      return;
+    }
+    try {
+      payload[name] = JSON.parse(raw);
+    } catch {
+      throw new Error(`Le champ « ${name} » doit être un JSON valide.`);
+    }
+  });
+  if (payload.event === "") delete payload.event;
   const hasFile = resources[view].fields.some(([, , type]) => type === "file");
   let body = JSON.stringify(payload);
   if (hasFile) {
@@ -164,8 +205,9 @@ async function loadOverview() {
   const names = Object.keys(resources);
   const results = await Promise.allSettled(names.map((view) => request(resources[view].endpoint)));
   const counts = results.map((result) => result.status === "fulfilled" ? (Array.isArray(result.value) ? result.value.length : result.value.results?.length || 0) : 0);
-  $("[data-stats]").innerHTML = [{ label: "Projets actifs", value: counts[0], tone: "lime" }, { label: "Événements", value: counts[1], tone: "coral" }, { label: "Membres de l’équipe", value: counts[2], tone: "cream" }, { label: "Messages reçus", value: counts[5], tone: "ink" }].map((stat) => `<div class="stat-card ${stat.tone}"><span>${stat.label}</span><strong>${stat.value}</strong><small>Voir le détail ↗</small></div>`).join("");
-  $("[data-message-count]").textContent = counts[5];
+  const countFor = (viewName) => counts[names.indexOf(viewName)] || 0;
+  $("[data-stats]").innerHTML = [{ label: "Projets actifs", value: countFor("projects"), tone: "lime" }, { label: "Événements", value: countFor("events"), tone: "coral" }, { label: "Membres de l’équipe", value: countFor("team"), tone: "cream" }, { label: "Messages reçus", value: countFor("messages"), tone: "ink" }].map((stat) => `<div class="stat-card ${stat.tone}"><span>${stat.label}</span><strong>${stat.value}</strong><small>Voir le détail ↗</small></div>`).join("");
+  $("[data-message-count]").textContent = countFor("messages");
   $("[data-recent-activity]").innerHTML = names.slice(0, 5).map((view, index) => `<div class="activity-row"><span class="activity-icon">${index + 1}</span><div><strong>${resources[view].label}</strong><p>${counts[index]} élément${counts[index] > 1 ? "s" : ""} disponible${counts[index] > 1 ? "s" : ""}</p></div><span>↗</span></div>`).join("");
 }
 
@@ -194,6 +236,7 @@ function bindApp() {
     const newButton = event.target.closest("[data-new]");
     const editButton = event.target.closest("[data-edit]");
     const deleteButton = event.target.closest("[data-delete]");
+    const readButton = event.target.closest("[data-toggle-read]");
     if (newButton) await openEditor(newButton.dataset.new);
     if (editButton) await openEditor(editButton.dataset.resource, editButton.dataset.edit);
     if (deleteButton && confirm("Supprimer définitivement cet élément ?")) {
@@ -201,7 +244,20 @@ function bindApp() {
       toast("Élément supprimé");
       await loadResource(deleteButton.dataset.resource);
     }
+    if (readButton) {
+      const isRead = readButton.dataset.readCurrent === "1";
+      await request(`${resources[readButton.dataset.resource].endpoint}${readButton.dataset.toggleRead}/`, { method: "PATCH", body: JSON.stringify({ is_read: !isRead }) });
+      toast(isRead ? "Message marqué non lu" : "Message marqué lu");
+      await loadResource(readButton.dataset.resource);
+    }
     if (event.target.closest("[data-close-modal]")) $("[data-modal]").remove();
+  });
+  document.addEventListener("input", (event) => {
+    const filter = event.target.closest("[data-filter]");
+    if (!filter) return;
+    const term = filter.value.toLowerCase();
+    const rows = $$(`[data-view-panel="${filter.dataset.filter}"] tbody tr`);
+    rows.forEach((row) => row.hidden = Boolean(term) && !row.textContent.toLowerCase().includes(term));
   });
   document.addEventListener("submit", (event) => {
     const form = event.target.closest("[data-resource-form]");
